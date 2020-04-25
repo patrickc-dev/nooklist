@@ -5,6 +5,19 @@ import fossils from './data/fossils.json';
 import villagers from './data/villagers.json';
 
 
+
+function Bmc(props) {
+  return (
+    <div>
+      <a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/nooklist">
+        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee"/>
+        <span>Buy me a coffee</span>
+      </a>
+    </div>
+  );
+}
+
+
 function Item(props) {
   return (
     <div className="card">
@@ -105,6 +118,7 @@ class Main extends React.Component {
 
     return (
       <div>
+        <Bmc/>
         <LangaugeSwitch onChange={this.languageHandler}/>
         <SearchBox onChange={this.searchBoxHandler}/>
         <ItemType onChange={this.itemTypeHandler} value={this.state.itemType}/>
