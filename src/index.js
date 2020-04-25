@@ -7,6 +7,7 @@ import fossils from './fossils.json';
 function Item(props) {
   return (
     <div className="card">
+      <img src="https://acnhcdn.com/latest/FtrIcon/FtrFossilDimetrodonA.png" alt="Avatar"></img>
       {props.itemName}
     </div>
   );
@@ -14,43 +15,68 @@ function Item(props) {
 
 function SearchBox(props) {
   return (
-    <input onChange={props.onChange}/>
+    <div>
+      <label>Search Box: </label>
+      <input onChange={props.onChange}/>
+    </div>
+  );
+}
+
+function LangaugeSwitch(props) {
+  return (
+    <div>
+        <input type="checkbox" onChange={props.onChange}/>
+        中文
+    </div>
   );
 }
 
 
-class Game extends React.Component {
+class Main extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
       items: fossils,
-      searchString: ''
+      searchString: '',
+      language: 'en',
     };
   }
 
   searchBoxHandler = (event) => {
+    const searchString = event.target.value
+    console.log('Search String : ' + searchString)
+
     this.setState(
       {
-        searchString: event.target.value,
+        searchString: searchString,
       }
     )
   }
 
+  languageHandler = (event) => {
+    console.log(event.target.checked);
+    if (event.target.checked) {
+      this.setState({language: 'zh'})
+    }
+    else {
+      this.setState({language: 'en'})
+    }
+  }
 
   render() {
-    const filteredItems = this.state.items.filter(item => (item.en + ' ' + item.zh).includes(this.state.searchString))
+    const filteredItems = this.state.items.filter(item => (item[this.state.language]).includes(this.state.searchString))
     const items = filteredItems.map((item) => 
         <li key={item.id}>
-          <Item itemName={item.en + ' ' + item.zh}/>
+          <Item itemName={item[this.state.language]}/>
         </li>
     );
 
     return (
       <div>
-        <div><SearchBox onChange={this.searchBoxHandler}/></div>
-        <div>{'Currently searching: ' + this.state.searchString}</div>
-        <ol>{items}</ol>
+        <LangaugeSwitch onChange={this.languageHandler}/>
+        <SearchBox onChange={this.searchBoxHandler}/>
+        <ul>{items}</ul>
       </div>
     );
   }
@@ -59,6 +85,6 @@ class Game extends React.Component {
   // ========================================
   
 ReactDOM.render(
-  <Game />,
+  <Main />,
   document.getElementById('root')
 );
