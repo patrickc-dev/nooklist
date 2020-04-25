@@ -122,7 +122,7 @@ class Main extends React.Component {
         <LangaugeSwitch onChange={this.languageHandler}/>
         <SearchBox onChange={this.searchBoxHandler}/>
         <ItemType onChange={this.itemTypeHandler} value={this.state.itemType}/>
-        <ul>{items}</ul>
+        <ul class="cards">{items}</ul>
       </div>
     );
   }
