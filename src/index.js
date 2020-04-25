@@ -8,8 +8,9 @@ import villagers from './data/villagers.json';
 function Item(props) {
   return (
     <div className="card">
-      <img src={'https://acnhcdn.com/latest/' + props.itemImgUrl + '.png'} alt="Avatar"></img>
-      {props.itemName}
+      <div><img src={'https://acnhcdn.com/latest/' + props.item.imgurl + '.png'} alt="Avatar"></img></div>
+      <div>{props.item.en}</div>
+      <div>{props.item.zh}</div>
     </div>
   );
 }
@@ -27,7 +28,7 @@ function LangaugeSwitch(props) {
   return (
     <div>
         <input type="checkbox" onChange={props.onChange}/>
-        中文
+        中文 (現在沒用的按鈕)
     </div>
   );
 }
@@ -93,13 +94,12 @@ class Main extends React.Component {
   }
 
   render() {
-    const filteredItems = this.state.items.filter(item => (item[this.state.language]).includes(this.state.searchString))
+    const filteredItems = this.state.items.filter(
+      item => (item.en + item.zh).includes(this.state.searchString)
+    )
     const items = filteredItems.map((item) => 
         <li key={item.id}>
-          <Item 
-            itemName={item[this.state.language]}
-            itemImgUrl={item.imgurl}
-          />
+          <Item item={item}/>
         </li>
     );
 
