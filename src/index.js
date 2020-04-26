@@ -18,16 +18,29 @@ function Bmc(props) {
   );
 }
 
+function Variant(props) {
+  return (
+    <div className='variant'>
+      <img src={props.variant.image} alt=''></img>
+    </div>
+  );
+}
 
 function Item(props) {
 
   const primaryImageUrl = props.item.variants[0].image
+  const variants = props.item.variants.map((variant) => 
+  <div key={variant.uniqueEntryId} className='variant'>
+    <Variant variant={variant}/>
+  </div>
+);
 
   return (
     <div className="card">
       <div><img src={primaryImageUrl} alt=''></img></div>
       <div>{props.item.name}</div>
       <div>{props.item.name_zh}</div>
+      {variants.length>1 ? <div className='variants'>{variants}</div> : null}
     </div>
   );
 }
@@ -59,8 +72,8 @@ class Main extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      items: itemsData.filter(item => (item.sourceSheet) === 'Fossils'),
-      itemType: 'Fossils',
+      items: itemsData.filter(item => (item.sourceSheet) === 'Housewares'),
+      itemType: 'Housewares',
       searchString: '',
     };
   }
@@ -79,7 +92,7 @@ class Main extends React.Component {
   itemTypeHandler = (event) => {
     console.log(event.target.value);
     const newItemType = event.target.value
-    const newItems = itemsData.filter(item => (item.sourceSheet) === event.target.value)
+    const newItems = itemsData.filter(item => (item.sourceSheet) === newItemType)
 
     this.setState({
       items: newItems,
@@ -94,10 +107,10 @@ class Main extends React.Component {
       item => (item.name).includes(this.state.searchString)
     )
 
-    const items = filteredItems.map((item) => 
-        <li key={item.name}>
+    const items = filteredItems.slice(0, 10).map((item) => 
+        <div key={item.name}>
           <Item item={item}/>
-        </li>
+        </div>
     );
 
     return (
@@ -105,7 +118,8 @@ class Main extends React.Component {
         <Bmc/>
         <SearchBox onChange={this.searchBoxHandler}/>
         <ItemType onChange={this.itemTypeHandler} value={this.state.itemType}/>
-        <ul className="cards">{items}</ul>
+        <div>{filteredItems.length + '個東西 只顯示10個'}</div>
+        <div className="cards">{items}</div>
       </div>
     );
   }
