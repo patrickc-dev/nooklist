@@ -1,0 +1,106 @@
+[
+    {
+        "itemtype_group": "Furnitures",
+        "itemtype_group_zh": "家具",
+        "itemtype": "Housewares",
+        "itemtype_zh": "家用"
+    },
+    {
+        "itemtype_group": "Furnitures",
+        "itemtype_group_zh": "家具",
+        "itemtype": "Miscellaneous",
+        "itemtype_zh": "小物"
+    },
+    {
+        "itemtype_group": "Furnitures",
+        "itemtype_group_zh": "家具",
+        "itemtype": "Wall-mounted",
+        "itemtype_zh": "牆掛"
+    },
+    {
+        "itemtype_group": "Furnitures",
+        "itemtype_group_zh": "家具",
+        "itemtype": "Wallpapers",
+        "itemtype_zh": "牆壁"
+    },
+    {
+        "itemtype_group": "Furnitures",
+        "itemtype_group_zh": "家具",
+        "itemtype": "Floors",
+        "itemtype_zh": "地板"
+    },
+    {
+        "itemtype_group": "Furnitures",
+        "itemtype_group_zh": "家具",
+        "itemtype": "Rugs",
+        "itemtype_zh": "地毯"
+    },
+    {
+        "itemtype": "Fencing",
+        "itemtype_zh": "圍牆"
+    },
+    {
+        "itemtype": "Photos",
+        "itemtype_zh": "照片"
+    },
+    {
+        "itemtype": "Posters",
+        "itemtype_zh": "Posters"
+    },
+    {
+        "itemtype": "Tools",
+        "itemtype_zh": "工具"
+    },
+    {
+        "itemtype": "Tops",
+        "itemtype_zh": "Tops"
+    },
+    {
+        "itemtype": "Bottoms",
+        "itemtype_zh": "Bottoms"
+    },
+    {
+        "itemtype": "Dress-Up",
+        "itemtype_zh": "Dress-Up"
+    },
+    {
+        "itemtype": "Headwear",
+        "itemtype_zh": "Headwear"
+    },
+    {
+        "itemtype": "Accessories",
+        "itemtype_zh": "Accessories"
+    },
+    {
+        "itemtype": "Socks",
+        "itemtype_zh": "Socks"
+    },
+    {
+        "itemtype": "Shoes",
+        "itemtype_zh": "Shoes"
+    },
+    {
+        "itemtype": "Bags",
+        "itemtype_zh": "Bags"
+    },
+    {
+        "itemtype": "Umbrellas",
+        "itemtype_zh": "Umbrellas"
+    },
+    {
+        "itemtype": "Music",
+        "itemtype_zh": "Music"
+    },
+    {
+        "itemtype": "Fossils",
+        "itemtype_zh": "Fossils"
+    },
+    {
+        "itemtype": "Other",
+        "itemtype_zh": "Other"
+    },
+    {
+        "itemtype": "Art",
+        "itemtype_zh": "Art"
+    }
+]

@@ -4,6 +4,7 @@ import './index.css';
 // import fossils from './data/fossils.json';
 // import villagers from './data/villagers.json';
 import itemsData from './data/items.json';
+import itemTypesData from './data/itemtypes.json';
 
 
 
@@ -48,19 +49,22 @@ function Item(props) {
 function SearchBox(props) {
   return (
     <div>
-      <label>Search Box: </label>
+      <label>搜尋: </label>
       <input onChange={props.onChange}/>
     </div>
   );
 }
 
 function ItemType(props) {
+  const itemTypes = itemTypesData.map((itemType) =>
+    <option value={itemType.itemtype}>{itemType.itemtype_zh}</option>
+  )
+
   return (
     <div>
-      Choose item type: 
+      類別: 
       <select onChange={props.onChange} value={props.value}>
-        <option value="Housewares">家具</option>
-        <option value="Fossils">化石</option>
+        {itemTypes}
       </select>
     </div>
   );
