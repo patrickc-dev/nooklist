@@ -49,7 +49,8 @@ function PageSelector(props) {
 function setItems(itemType, searchString) {
   let filteredItem = itemsData
   filteredItem = filteredItem.filter(item => (item.sourceSheet) === itemType)
-  filteredItem = filteredItem.filter(item => (item.name).includes(searchString))
+  filteredItem = filteredItem.filter(item => (item.name + item.name_zh).includes(searchString))
+
   return filteredItem
 }
 
