@@ -89,3 +89,20 @@ img{
     opacity: 0.85 !important;
     color: #FFFFFF !important;
 }
+
+
+.pagination{
+  padding: 16px 16px;
+}
+
+.pagination button{
+  color: black;
+  border: 0;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination .active {
+  background-color: #4CAF50;
+  color: white;
+}

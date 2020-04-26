@@ -49,7 +49,7 @@ function Item(props) {
 function SearchBox(props) {
   return (
     <div>
-      <label>搜尋: </label>
+      <label>搜尋：</label>
       <input onChange={props.onChange}/>
     </div>
   );
@@ -57,12 +57,17 @@ function SearchBox(props) {
 
 function ItemType(props) {
   const itemTypes = itemTypesData.map((itemType) =>
-    <option value={itemType.itemtype}>{itemType.itemtype_zh}</option>
+    <option 
+      value={itemType.itemtype} 
+      key={itemType.itemtype}
+    >
+      {itemType.itemtype_zh}
+    </option>
   )
 
   return (
     <div>
-      類別: 
+      類別：
       <select onChange={props.onChange} value={props.value}>
         {itemTypes}
       </select>
@@ -70,48 +75,78 @@ function ItemType(props) {
   );
 }
 
+function PageSelector(props) {
+  return (
+  <div className="pagination">頁數：
+    <button onClick={() => props.onClick('-')}>&laquo;</button>
+    <span>{props.pageNumber}</span>
+    <button onClick={() => props.onClick('+')}>&raquo;</button>
+  </div>
+  );
+} 
+
+function setItems(itemType, searchString) {
+  let filteredItem = itemsData
+  filteredItem = filteredItem.filter(item => (item.sourceSheet) === itemType)
+  filteredItem = filteredItem.filter(item => (item.name).includes(searchString))
+  return filteredItem
+}
 
 class Main extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
-      items: itemsData.filter(item => (item.sourceSheet) === 'Housewares'),
+      filteredItems: setItems('Housewares', ''),
       itemType: 'Housewares',
+      pageNumber: 1,
       searchString: '',
     };
   }
 
+
+
   searchBoxHandler = (event) => {
     const searchString = event.target.value
-    console.log('Search String : ' + searchString)
+    // console.log('Search String : ' + searchString)
 
     this.setState(
       {
         searchString: searchString,
+        filteredItems: setItems(this.state.itemType, searchString)
       }
     )
   }
 
   itemTypeHandler = (event) => {
-    console.log(event.target.value);
     const newItemType = event.target.value
-    const newItems = itemsData.filter(item => (item.sourceSheet) === newItemType)
+    // console.log('Item Type: ' + newItemType)
 
     this.setState({
-      items: newItems,
-      itemType: newItemType
+      itemType: newItemType,
+      filteredItems: setItems(newItemType, this.state.searchString)
     })
 
   }
 
+  pageHandler = (direction) => {
+
+    let newPageNumber = this.state.pageNumber
+    let maxPage = Math.ceil(this.state.filteredItems.length / 20)
+
+    if (direction === '-' && this.state.pageNumber > 1) {
+      newPageNumber = this.state.pageNumber - 1
+    } else if (direction === '+' && this.state.pageNumber < maxPage){
+      newPageNumber = this.state.pageNumber + 1
+    }
+
+    this.setState({pageNumber: newPageNumber})
+  }
+
   render() {
-
-    const filteredItems = this.state.items.filter(
-      item => (item.name).includes(this.state.searchString)
-    )
-
-    const items = filteredItems.slice(0, 10).map((item) => 
+    
+    const startItem = (this.state.pageNumber - 1) * 20
+    const displayItems = this.state.filteredItems.slice(startItem, startItem+20).map((item) => 
         <div key={item.name}>
           <Item item={item}/>
         </div>
@@ -122,8 +157,9 @@ class Main extends React.Component {
         <Bmc/>
         <SearchBox onChange={this.searchBoxHandler}/>
         <ItemType onChange={this.itemTypeHandler} value={this.state.itemType}/>
-        <div>{filteredItems.length + '個東西 只顯示10個'}</div>
-        <div className="cards">{items}</div>
+        <PageSelector onClick={this.pageHandler} pageNumber={this.state.pageNumber}/>
+        <div>{this.state.filteredItems.length + '個東西 顯示第' + (startItem+1) + ' - ' + (startItem+20) + '個'}</div>
+        <div className="cards">{displayItems}</div>
       </div>
     );
   }
