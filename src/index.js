@@ -1,50 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import fossils from './data/fossils.json';
-// import villagers from './data/villagers.json';
 import itemsData from './data/items.json';
 import itemTypesData from './data/itemtypes.json';
+import Bmc from './component/monetize/bmc';
+import ItemList from './component/display/itemList';
 
-
-
-function Bmc(props) {
-  return (
-    <div>
-      <a className="bmc-button" target="_blank" rel="noopener noreferrer" href="https://www.buymeacoffee.com/nooklist">
-        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee"/>
-        <span>Buy me a coffee</span>
-      </a>
-    </div>
-  );
-}
-
-function Variant(props) {
-  return (
-    <div className='variant'>
-      <img src={props.variant.image} alt=''></img>
-    </div>
-  );
-}
-
-function Item(props) {
-
-  const primaryImageUrl = props.item.variants[0].image
-  const variants = props.item.variants.map((variant) => 
-  <div key={variant.uniqueEntryId} className='variant'>
-    <Variant variant={variant}/>
-  </div>
-);
-
-  return (
-    <div className="card">
-      <div><img src={primaryImageUrl} alt=''></img></div>
-      <div>{props.item.name}</div>
-      <div>{props.item.name_zh}</div>
-      {variants.length>1 ? <div className='variants'>{variants}</div> : null}
-    </div>
-  );
-}
 
 function SearchBox(props) {
   return (
@@ -145,12 +106,7 @@ class Main extends React.Component {
 
   render() {
     
-    const startItem = (this.state.pageNumber - 1) * 20
-    const displayItems = this.state.filteredItems.slice(startItem, startItem+20).map((item) => 
-        <div key={item.name}>
-          <Item item={item}/>
-        </div>
-    );
+
 
     return (
       <div>
@@ -158,8 +114,7 @@ class Main extends React.Component {
         <SearchBox onChange={this.searchBoxHandler}/>
         <ItemType onChange={this.itemTypeHandler} value={this.state.itemType}/>
         <PageSelector onClick={this.pageHandler} pageNumber={this.state.pageNumber}/>
-        <div>{this.state.filteredItems.length + '個東西 顯示第' + (startItem+1) + ' - ' + (startItem+20) + '個'}</div>
-        <div className="cards">{displayItems}</div>
+        <ItemList filteredItems={this.state.filteredItems} pageNumber={this.state.pageNumber}/>
       </div>
     );
   }
