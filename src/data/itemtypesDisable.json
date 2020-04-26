@@ -1,0 +1,50 @@
+[
+    {
+        "itemtype": "Tops",
+        "itemtype_zh": "Tops"
+    },
+    {
+        "itemtype": "Bottoms",
+        "itemtype_zh": "Bottoms"
+    },
+    {
+        "itemtype": "Dress-Up",
+        "itemtype_zh": "Dress-Up"
+    },
+    {
+        "itemtype": "Headwear",
+        "itemtype_zh": "Headwear"
+    },
+    {
+        "itemtype": "Accessories",
+        "itemtype_zh": "Accessories"
+    },
+    {
+        "itemtype": "Socks",
+        "itemtype_zh": "Socks"
+    },
+    {
+        "itemtype": "Shoes",
+        "itemtype_zh": "Shoes"
+    },
+    {
+        "itemtype": "Bags",
+        "itemtype_zh": "Bags"
+    },
+    {
+        "itemtype": "Umbrellas",
+        "itemtype_zh": "Umbrellas"
+    },
+    {
+        "itemtype": "Music",
+        "itemtype_zh": "Music"
+    },
+    {
+        "itemtype": "Other",
+        "itemtype_zh": "Other"
+    },
+    {
+        "itemtype": "Art",
+        "itemtype_zh": "Art"
+    }
+]
