@@ -74,7 +74,8 @@ class Main extends React.Component {
     this.setState(
       {
         searchString: searchString,
-        filteredItems: setItems(this.state.itemType, searchString)
+        filteredItems: setItems(this.state.itemType, searchString),
+        pageNumber: 1,
       }
     )
   }

@@ -64,7 +64,11 @@ class Item extends Component {
 
 function ItemList(props) {
   const startItem = (props.pageNumber - 1) * 20
-  const displayItems = props.filteredItems.slice(startItem, startItem+20).map((item) => 
+  const endItem = props.filteredItems.length > startItem+20 ? startItem+20 : props.filteredItems.length
+  const pageMessage = 
+    props.filteredItems.length === 0 ? '沒有東西' :
+    props.filteredItems.length + '個東西 顯示第' + (startItem+1) + ' - ' + (endItem) + '個'
+  const displayItems = props.filteredItems.slice(startItem, endItem).map((item) => 
     <div key={item.name}>
       <Item item={item}/>
     </div>
@@ -72,7 +76,7 @@ function ItemList(props) {
 
   return(
     <div>
-      <div>{props.filteredItems.length + '個東西 顯示第' + (startItem+1) + ' - ' + (startItem+20) + '個'}</div>
+      <div>{pageMessage}</div>
       <div className="cards">{displayItems}</div>
     </div>
   );
