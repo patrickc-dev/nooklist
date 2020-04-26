@@ -13,35 +13,50 @@ function Variant(props) {
     </div>
   );
 }
+
+const VariantList = (props) => {
+
+  const variants = props.variants.map((variant, index) => 
+    <div key={variant.uniqueEntryId} className='variant'>
+      <div className={props.variantSelected === index ? 'selected' : ''}>
+        <Variant variant={variant} onClick={props.onClick} index={index}/>
+      </div> 
+    </div>
+  );
+  return ( 
+    <div>
+      {props.variants.length>1 ? <div className='variants'>{variants}</div> : null}
+    </div>
+  );
+}
+
 class Item extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      variant: 0
+      variantSelected: 0
     }
   }
 
   variantClickHandler = (index) => {
     // console.log(index)
-    this.setState({ variant: index});
+    this.setState({ variantSelected: index});
   }
 
   render() { 
-    const primaryImageUrl = this.props.item.variants[this.state.variant].image
+    const primaryImageUrl = this.props.item.variants[this.state.variantSelected].image
 
-    const variants = this.props.item.variants.map((variant, index) => 
-      <div key={variant.uniqueEntryId} className='variant'>
-        <Variant variant={variant} onClick={this.variantClickHandler} index={index}/>
-      </div>
-    );
-  
     return (
       <div className="card">
         <div><img src={primaryImageUrl} alt=''></img></div>
         <div>{this.props.item.name}</div>
         <div>{this.props.item.name_zh}</div>
-        {variants.length>1 ? <div className='variants'>{variants}</div> : null}
+        <VariantList 
+          variants={this.props.item.variants} 
+          onClick={this.variantClickHandler}
+          variantSelected={this.state.variantSelected}
+        />
       </div>
     );
   }
