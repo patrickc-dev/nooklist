@@ -3,9 +3,6 @@ body {
   margin: 20px;
 }
 
-
-
-
 .search {
   width: 20%;
 }
@@ -16,6 +13,7 @@ body {
   padding: 5px;
   height: 20px;
   border-radius: 5px;
+  font-size:14px;
   outline: none;
   color: #9DBFAF;
 }
@@ -23,6 +21,34 @@ body {
 .searchTerm:focus{
   color: #00B4CC;
 }
+
+.itemTypeButton {
+  background-color:#67c0e0;
+	border-radius:4px;
+	border:1px solid #29668f;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	padding:10px 20px;
+	text-decoration:none;
+}
+.active {
+	background-color:#38a6b5;
+}
+.itemTypeButton:hover {
+	background-color:#38a6b5;
+}
+.itemTypeButton:active {
+	position:relative;
+	top:1px;
+}
+.itemTypeButton:focus { 
+  border:1px solid #000000;
+  outline: none;
+}
+
 
 
 .pagination{

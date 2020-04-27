@@ -21,20 +21,16 @@ function SearchBox(props) {
 
 function ItemType(props) {
   const itemTypes = itemTypesData.map((itemType) =>
-    <option 
-      value={itemType.itemtype} 
+    <button 
       key={itemType.itemtype}
-    >
-      {itemType.itemtype_zh}
-    </option>
+      className={props.currentItemType === itemType.itemtype ? 'itemTypeButton active' : 'itemTypeButton'}
+      onClick={() => props.onClick(itemType.itemtype)}
+    >{itemType.itemtype_zh}</button> 
   )
 
   return (
     <div>
-      類別：
-      <select onChange={props.onChange} value={props.value}>
         {itemTypes}
-      </select>
     </div>
   );
 }
@@ -84,8 +80,8 @@ class Main extends React.Component {
     )
   }
 
-  itemTypeHandler = (event) => {
-    const newItemType = event.target.value
+  itemTypeHandler = (clickedItemType) => {
+    const newItemType = clickedItemType
     // console.log('Item Type: ' + newItemType)
 
     this.setState({
@@ -117,7 +113,7 @@ class Main extends React.Component {
       <div>
         <Bmc/>
         <SearchBox onChange={this.searchBoxHandler}/>
-        <ItemType onChange={this.itemTypeHandler} value={this.state.itemType}/>
+        <ItemType onClick={this.itemTypeHandler} currentItemType={this.state.itemType}/>
         <PageSelector onClick={this.pageHandler} pageNumber={this.state.pageNumber}/>
         <ItemList filteredItems={this.state.filteredItems} pageNumber={this.state.pageNumber}/>
       </div>
