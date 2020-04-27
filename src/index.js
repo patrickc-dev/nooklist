@@ -9,9 +9,12 @@ import ItemList from './component/display/itemList';
 
 function SearchBox(props) {
   return (
-    <div>
-      <label>搜尋：</label>
-      <input onChange={props.onChange}/>
+    <div class="search">
+      <input 
+        type="text" 
+        class="searchTerm" 
+        placeholder="搜尋"
+        onChange={props.onChange}/>
     </div>
   );
 }
