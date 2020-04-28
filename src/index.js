@@ -86,7 +86,8 @@ class Main extends React.Component {
 
     this.setState({
       itemType: newItemType,
-      filteredItems: setItems(newItemType, this.state.searchString)
+      filteredItems: setItems(newItemType, this.state.searchString),
+      pageNumber: 1,
     })
 
   }
