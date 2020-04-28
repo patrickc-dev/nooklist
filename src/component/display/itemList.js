@@ -50,8 +50,8 @@ class Item extends Component {
     return (
       <div className="card">
         <div><img src={primaryImageUrl} alt=''></img></div>
-        <div>{this.props.item.name}</div>
         <div>{this.props.item.name_zh}</div>
+        <div>{this.props.item.name}</div>
         <VariantList 
           variants={this.props.item.variants} 
           onClick={this.variantClickHandler}
@@ -76,8 +76,8 @@ function ItemList(props) {
 
   return(
     <div>
-      <div>{pageMessage}</div>
-      <div className="cards">{displayItems}</div>
+      <div classNmae='pageMessage'>{pageMessage}</div>
+      <div className="cardList">{displayItems}</div>
     </div>
   );
 }

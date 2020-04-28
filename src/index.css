@@ -4,7 +4,9 @@ body {
 }
 
 .search {
-  width: 20%;
+  width: 200px;
+  float: right;
+  padding: 10px
 }
 
 .searchTerm {
@@ -53,7 +55,8 @@ body {
 
 .pagination {
   display: inline-block;
-  border:1px solid #29668f;
+  margin-right: 0px;
+  padding: 10px;
 }
 
 .pagination button {

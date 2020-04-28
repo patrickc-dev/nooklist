@@ -112,8 +112,8 @@ class Main extends React.Component {
     return (
       <div>
         <Bmc/>
-        <SearchBox onChange={this.searchBoxHandler}/>
         <ItemType onClick={this.itemTypeHandler} currentItemType={this.state.itemType}/>
+        <SearchBox onChange={this.searchBoxHandler}/>
         <PageSelector onClick={this.pageHandler} pageNumber={this.state.pageNumber}/>
         <ItemList filteredItems={this.state.filteredItems} pageNumber={this.state.pageNumber}/>
       </div>
