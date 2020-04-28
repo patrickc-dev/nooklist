@@ -9,10 +9,10 @@ import ItemList from './component/display/itemList';
 
 function SearchBox(props) {
   return (
-    <div class="search">
+    <div className="search">
       <input 
         type="text" 
-        class="searchTerm" 
+        className="searchTerm" 
         placeholder="搜尋"
         onChange={props.onChange}/>
     </div>
@@ -23,7 +23,7 @@ function ItemType(props) {
   const itemTypes = itemTypesData.map((itemType) =>
     <button 
       key={itemType.itemtype}
-      className={props.currentItemType === itemType.itemtype ? 'itemTypeButton active' : 'itemTypeButton'}
+      className={props.currentItemType === itemType.itemtype ? 'itemTypeButton activeItemType' : 'itemTypeButton'}
       onClick={() => props.onClick(itemType.itemtype)}
     >{itemType.itemtype_zh}</button> 
   )
@@ -37,9 +37,9 @@ function ItemType(props) {
 
 function PageSelector(props) {
   return (
-  <div className="pagination">頁數：
+  <div className="pagination">
     <button onClick={() => props.onClick('-')}>&laquo;</button>
-    <span>{props.pageNumber}</span>
+    <button className='active'>第 {props.pageNumber} 頁</button>
     <button onClick={() => props.onClick('+')}>&raquo;</button>
   </div>
   );
