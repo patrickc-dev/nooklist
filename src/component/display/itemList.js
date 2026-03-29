@@ -76,7 +76,7 @@ function ItemList(props) {
 
   return(
     <div>
-      <div classNmae='pageMessage'>{pageMessage}</div>
+      <div className='pageMessage'>{pageMessage}</div>
       <div className="cardList">{displayItems}</div>
     </div>
   );
